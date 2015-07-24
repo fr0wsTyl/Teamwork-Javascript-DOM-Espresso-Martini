@@ -5,18 +5,26 @@ function game() {
 
 	var stage = new Kinetic.Stage({
 		container: 'canvas-container',
-		width: 450,
-		height: 350
+		width: 840,
+		height: 620,
 	});
 
 	var layer = new Kinetic.Layer();
+	var backgroundLayer = new Kinetic.Layer();
 
-	var stamo = duck.init(300, 150, 3, 3),
+	// background accepts width, height
+	var gameBackground = background.init(840, 620);
+	var	gameBackgroundImage = background.draw();
+
+	// xPosition yPosition, velocityX, velocityY, width, height, alive (boolean)
+	var stamo = duck.init(300, 150, 3, 3, 75, 75, true, 'down-right'),
 		stamoImage = stamo.draw();
 
+	backgroundLayer.add(gameBackgroundImage);
+	stage.add(backgroundLayer);
 	layer.add(stamoImage);
 	stage.add(layer);
-
+	
 
 	function animFrame() {
 		var velocityX = stamo.velocityX,
@@ -24,11 +32,13 @@ function game() {
 			currentX = stamoImage.getX() + velocityX,
 			currentY = stamoImage.getY() + velocityY;
 
-		if (0 >= currentX || currentX >= stage.getWidth() - 50) {
+		if (0 >= currentX || currentX >= stage.getWidth() - 75) {
 			stamo.velocityX *= -1;
+			stamo.getRightDirection();
 		}
-		if (0 >= currentY || currentY >= stage.getHeight() - 50) {
+		if (0 >= currentY || currentY >= stage.getHeight() - 75) {
 			stamo.velocityY *= -1;
+			stamo.getRightDirection();
 		}
 
 		stamoImage.setX(currentX);

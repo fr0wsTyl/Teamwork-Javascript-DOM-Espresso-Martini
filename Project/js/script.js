@@ -1,7 +1,9 @@
 function game() {
-	var initalLink = document.getElementById('initial');
 
-	initalLink.style.display = 'none';
+	/* The old way of starting the game (via html button) */
+	// var initalLink = document.getElementById('initial');
+
+	// initalLink.style.display = 'none';
 
 	var stage = new Kinetic.Stage({
 		container: 'canvas-container',

@@ -11,47 +11,85 @@ function game() {
 
 	var layer = new Kinetic.Layer();
 	var backgroundLayer = new Kinetic.Layer();
-	var shotgunLayer = new Kinetic.Layer();
 
 	// background accepts width, height
-	var gameBackground = background.init(840, 620);
-	var	gameBackgroundImage = background.draw();
+	var gameBackground = Object.create(background).init(840, 620),
+		gameBackgroundImage = gameBackground.draw();
 
-	// xPosition yPosition, velocityX, velocityY, width, height, alive (boolean)
-	var stamo = duck.init(300, 150, 3, 3, 75, 75, true, 'down-right'),
-		stamoImage = stamo.draw();
+	//xPosition, yPosition, width, height
+	var shooter = Object.create(shotgun).init(380, 525, 82, 97),
+		shooterImage = shooter.draw();
 
-    //xPosition, yPosition, width, height
-    var shooter = shotgun.init(380, 525, 82, 97),
-        shooterImage = shooter.draw();
+	var ducks = [],
+		numberOfDucks = 2,
+		birdsSize = 75,
+		speed = 3,
+		currentDuck,
+		currentDuckImage,
+		generatedRandom = 0,
+		spawnXPosition = 0,
+		spawnYPosition = 0;
+
+	// xPosition yPosition, velocityX, velocityY, width, height, state
+	for (var i = 0; i < numberOfDucks; i += 1) {
+		generatedRandom = parseInt(Math.random() * 10);
+		spawnYPosition = (stage.getHeight() / 2) - generatedRandom * (birdsSize / 3);
+
+		if (generatedRandom % 2 === 0) {
+			spawnXPosition = 1;
+		} else {
+			spawnXPosition = stage.getWidth() - birdsSize - 10;
+		}
+
+		currentDuck = Object.create(duck).init(spawnXPosition, spawnYPosition, speed, speed, birdsSize, birdsSize, 'down-right'),
+			currentDuckImage = currentDuck.draw();
+
+		ducks.push(currentDuck);
+		layer.add(currentDuckImage);
+	}
 
 	backgroundLayer.add(gameBackgroundImage);
 	stage.add(backgroundLayer);
-	layer.add(stamoImage);
+
+	layer.add(shooterImage);
 	stage.add(layer);
-    shotgunLayer.add(shooterImage);
-	stage.add(shotgunLayer);
 
 	function animFrame() {
-		var velocityX = stamo.velocityX,
-			velocityY = stamo.velocityY,
-			currentX = stamoImage.getX() + velocityX,
-			currentY = stamoImage.getY() + velocityY;
+		ducks.forEach(function(ducky) {
+			var velocityX = ducky.velocityX,
+				velocityY = ducky.velocityY,
+				duckyImage = ducky.draw(),
+				currentX = duckyImage.getX() + velocityX,
+				currentY = duckyImage.getY() + velocityY,
+				suddenChangeDirectionX = parseInt(((Math.random() * 1000) + stage.getHeight() * currentY)),
+				suddenChangeDirectionY = parseInt(((Math.random() * 1000) + stage.getWidth() * currentX)),
+				magicNumber = 237;
 
-		if (0 >= currentX || currentX >= stage.getWidth() - 75) {
-			stamo.velocityX *= -1;
-			stamo.getRightDirection();
-		}
-		if (0 >= currentY || currentY >= stage.getHeight() - 75) {
-			stamo.velocityY *= -1;
-			stamo.getRightDirection();
-		}
+			ducky.clicked();
 
-		stamoImage.setX(currentX);
-		stamoImage.setY(currentY);
+			if (0 >= currentX ||
+				currentX >= stage.getWidth() - birdsSize ||
+				suddenChangeDirectionX % magicNumber === 0) {
+
+				ducky.velocityX *= -1;
+				ducky.getRightDirection();
+			}
+
+			if (0 >= currentY ||
+				currentY >= stage.getHeight() - birdsSize ||
+				suddenChangeDirectionY % magicNumber === 0) {
+
+				ducky.velocityY *= -1;
+				ducky.getRightDirection();
+			}
+
+			duckyImage.setX(currentX);
+			duckyImage.setY(currentY);
+		});
+
+		shooter.clicked();
 
 		layer.draw();
-        shotgunLayer.draw();
 
 		requestAnimationFrame(animFrame);
 	}

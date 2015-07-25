@@ -1,24 +1,23 @@
-var duck = (function() {
-	var duckImage = new Image();
-
+var duck = function() {
 	var duck = {
-		init: function(x, y, velocityX, velocityY, width, height, alive, state) {
+		init: function(x, y, velocityX, velocityY, width, height, state) {
 			this.x = x;
 			this.y = y;
-			this.alive = alive;
+			this.width = width;
+			this.height = height;
 			this.velocityX = velocityX;
 			this.velocityY = velocityY;
+			this.duckImage = new Image();
 
-			getBirdState(state);
+			getBirdState(state, this);
 
 			this.image = new Kinetic.Image({
 				x: this.x,
 				y: this.y,
-				image: duckImage,
-				width: width,
-				height: height
+				image: this.duckImage,
+				width: this.width,
+				height: this.height
 			});
-
 			return this;
 		},
 		draw: function() {
@@ -36,28 +35,34 @@ var duck = (function() {
 			}
 		},
 		changeState: function(newState) {
-			getBirdState(newState);
+			getBirdState(newState, this);
 
-			this.image.image = duckImage;
+			this.image.image = this.duckImage;
+		},
+		clicked: function() {
+			this.image.addEventListener('click', function() {
+				this.destroy();
+			})
 		}
+
 	};
 
-	function getBirdState(state) {
+	function getBirdState(state, bird) {
 		switch (state) {
 			case 'down-right':
-				duckImage.src = 'images/Birds/bird-one.png';
+				bird.duckImage.src = 'images/Birds/bird-one.png';
 				break;
 			case 'up-right':
-				duckImage.src = 'images/Birds/bird-two.png';
+				bird.duckImage.src = 'images/Birds/bird-two.png';
 				break;
 			case 'up-left':
-				duckImage.src = 'images/Birds/bird-three.png';
+				bird.duckImage.src = 'images/Birds/bird-three.png';
 				break;
 			case 'down-left':
-				duckImage.src = 'images/Birds/bird-four.png';
+				bird.duckImage.src = 'images/Birds/bird-four.png';
 				break;
 		}
 	}
 
 	return duck;
-}());
+}();

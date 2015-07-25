@@ -42,7 +42,7 @@ var duck = function() {
 		clicked: function() {
 			this.image.addEventListener('click', function() {
 				this.destroy();
-			})
+			});
 		}
 
 	};

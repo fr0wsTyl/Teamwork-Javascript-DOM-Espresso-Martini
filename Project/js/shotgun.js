@@ -23,10 +23,10 @@ var shotgun = (function() {
         clicked: function(stage) {
             stage.addEventListener('mousedown', function() {
                 shotgunImage.src = 'images/Shotgun/shotgun-shooting.png';
-            })
+            });
             stage.addEventListener('mouseup', function() {
                 shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';
-            })
+            });
         }
     };
 

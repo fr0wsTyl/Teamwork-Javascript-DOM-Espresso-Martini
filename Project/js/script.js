@@ -12,19 +12,25 @@ function game() {
         spawnXPosition,
         spawnYPosition,
         i,
+        gameStartButton,
+        startScreenLayer,
         CANVAS_WIDTH,
         CANVAS_HEIGHT,
         NUMBER_OF_DUCKS,
         BIRDS_SIZE,
-        BIRDS_SPEED;
+        BIRDS_SPEED,
+        START_GAME_IMAGE_WIDTH,
+        START_GAME_IMAGE_HEIGHT;
 
 
     //Assigning default values for the constants
     NUMBER_OF_DUCKS = 4;
     BIRDS_SIZE = 75;
-    BIRDS_SPEED = 3;
+    BIRDS_SPEED = 5;
     CANVAS_WIDTH = 840;
     CANVAS_HEIGHT = 620;
+    START_GAME_IMAGE_WIDTH = 176;
+    START_GAME_IMAGE_HEIGHT = 82;
 
     //Assigning default values for other variables
     ducks = [];
@@ -41,6 +47,11 @@ function game() {
 
     layer = new Kinetic.Layer();
     backgroundLayer = new Kinetic.Layer();
+    startScreenLayer = new Kinetic.Layer();
+
+    gameStartButton = Object.create(startGameScreen).init((CANVAS_WIDTH / 2) - (START_GAME_IMAGE_WIDTH / 2), (CANVAS_HEIGHT / 2) - (START_GAME_IMAGE_HEIGHT / 2), START_GAME_IMAGE_WIDTH, START_GAME_IMAGE_HEIGHT);
+    gameStartButtonImage = gameStartButton.draw();
+    startScreenLayer.add(gameStartButtonImage);
 
     // background accepts width, height
     gameBackground = Object.create(background).init(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -71,8 +82,15 @@ function game() {
     backgroundLayer.add(gameBackgroundImage);
     stage.add(backgroundLayer);
 
-    layer.add(shooterImage);
-    stage.add(layer);
+
+    stage.add(startScreenLayer);
+    gameStartButtonImage.addEventListener('click', function() {
+        // shotgunImage.src = ' ';
+        gameStartButtonImage.remove();
+        startScreenLayer.draw();
+        layer.add(shooterImage);
+        stage.add(layer);
+    });
 
     function animFrame() {
         ducks.forEach(function(ducky) {

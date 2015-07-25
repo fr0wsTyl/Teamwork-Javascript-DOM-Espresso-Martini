@@ -20,11 +20,11 @@ var shotgun = (function() {
         draw: function() {
             return this.image;
         },
-        clicked: function() {
-            window.addEventListener('mousedown', function() {
+        clicked: function(stage) {
+            stage.addEventListener('mousedown', function() {
                 shotgunImage.src = 'images/Shotgun/shotgun-shooting.png';
             })
-            window.addEventListener('mouseup', function() {
+            stage.addEventListener('mouseup', function() {
                 shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';
             })
         }

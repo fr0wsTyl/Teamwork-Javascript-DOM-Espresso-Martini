@@ -87,7 +87,7 @@ function game() {
 			duckyImage.setY(currentY);
 		});
 
-		shooter.clicked();
+		shooter.clicked(stage);
 
 		layer.draw();
 

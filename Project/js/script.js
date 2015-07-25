@@ -6,11 +6,12 @@ function game() {
 	var stage = new Kinetic.Stage({
 		container: 'canvas-container',
 		width: 840,
-		height: 620,
+		height: 620
 	});
 
 	var layer = new Kinetic.Layer();
 	var backgroundLayer = new Kinetic.Layer();
+	var shotgunLayer = new Kinetic.Layer();
 
 	// background accepts width, height
 	var gameBackground = background.init(840, 620);
@@ -20,11 +21,16 @@ function game() {
 	var stamo = duck.init(300, 150, 3, 3, 75, 75, true, 'down-right'),
 		stamoImage = stamo.draw();
 
+    //xPosition, yPosition, width, height
+    var shooter = shotgun.init(380, 525, 82, 97),
+        shooterImage = shooter.draw();
+
 	backgroundLayer.add(gameBackgroundImage);
 	stage.add(backgroundLayer);
 	layer.add(stamoImage);
 	stage.add(layer);
-	
+    shotgunLayer.add(shooterImage);
+	stage.add(shotgunLayer);
 
 	function animFrame() {
 		var velocityX = stamo.velocityX,
@@ -45,6 +51,7 @@ function game() {
 		stamoImage.setY(currentY);
 
 		layer.draw();
+        shotgunLayer.draw();
 
 		requestAnimationFrame(animFrame);
 	}

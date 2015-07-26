@@ -1,8 +1,10 @@
 var shotgun = (function() {
-    var shotgunImage = new Image();
+    var shotgunImage = new Image(),
+        shotgun;
+
     shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';
 
-    var shotgun = {
+    shotgun = {
         init: function(x, y, width, height) {
             this.x = x;
             this.y = y;
@@ -23,10 +25,10 @@ var shotgun = (function() {
         clicked: function(stage) {
             stage.addEventListener('mousedown', function() {
                 shotgunImage.src = 'images/Shotgun/shotgun-shooting.png';
-            })
+            });
             stage.addEventListener('mouseup', function() {
                 shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';
-            })
+            });
         }
     };
 

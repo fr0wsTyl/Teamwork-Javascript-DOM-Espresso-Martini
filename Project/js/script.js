@@ -45,6 +45,9 @@ function game() {
     //xPosition, yPosition, width, height
     shooter = Object.create(shotgun).init(380, 525, 82, 97);
     shooterImage = shooter.draw();
+    stage.addEventListener('mousemove', function (ev) {
+        shooterImage.setX(ev.clientX - 300); //magic number 300?
+    });
 
     // xPosition yPosition, velocityX, velocityY, width, height, state, isAlive
     for (i = 0; i < NUMBER_OF_DUCKS; i += 1) {

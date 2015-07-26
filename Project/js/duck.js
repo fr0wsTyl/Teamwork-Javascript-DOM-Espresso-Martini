@@ -1,12 +1,13 @@
 var duck = function() {
 	var duck = {
-		init: function(x, y, velocityX, velocityY, width, height, state) {
+		init: function(x, y, velocityX, velocityY, width, height, state, isAlive) {
 			this.x = x;
 			this.y = y;
 			this.width = width;
 			this.height = height;
 			this.velocityX = velocityX;
 			this.velocityY = velocityY;
+			this.isAlive = isAlive;
 			this.duckImage = new Image();
 
 			getBirdState(state, this);
@@ -38,13 +39,7 @@ var duck = function() {
 			getBirdState(newState, this);
 
 			this.image.image = this.duckImage;
-		},
-		clicked: function() {
-			this.image.addEventListener('click', function() {
-				this.destroy();
-			})
 		}
-
 	};
 
 	function getBirdState(state, bird) {

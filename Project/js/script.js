@@ -108,8 +108,6 @@ function game() {
                 bottomBorder = stage.getHeight() - (stage.getHeight() / 3),
                 magicNumber = 237;
 
-            //shooter.clicked(stage);
-
             ducky.image.addEventListener('click', function() {
                 ducky.isAlive = false;
             });

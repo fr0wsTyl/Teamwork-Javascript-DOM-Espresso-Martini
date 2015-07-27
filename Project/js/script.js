@@ -63,12 +63,13 @@ function game() {
     //xPosition, yPosition, width, height
     shooter = Object.create(shotgun).init(380, 525, 82, 97);
     shooterImage = shooter.draw();
-
+	shooter.clicked(stage);
+	
     stage.addEventListener('mousemove', function(ev) {
         shooterImage.setX(ev.clientX - CANVAS_WIDTH / 2); //magic number 300?
     });
-
-    // xPosition yPosition, velocityX, velocityY, width, height, state, isAlive
+	
+	// xPosition yPosition, velocityX, velocityY, width, height, state, isAlive
     for (i = 0; i < NUMBER_OF_DUCKS; i += 1) {
         currentDuck = generateRandomDuck();
 
@@ -107,7 +108,7 @@ function game() {
                 bottomBorder = stage.getHeight() - (stage.getHeight() / 3),
                 magicNumber = 237;
 
-            shooter.clicked(stage);
+            //shooter.clicked(stage);
 
             ducky.image.addEventListener('click', function() {
                 ducky.isAlive = false;

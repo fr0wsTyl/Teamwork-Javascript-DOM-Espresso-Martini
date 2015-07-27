@@ -55,6 +55,7 @@ function game() {
 
     layer = new Kinetic.Layer();
     backgroundLayer = new Kinetic.Layer();
+    startScreenLayer = new Kinetic.Layer();
 
     // background accepts width, height
     gameBackground = Object.create(background).init(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -65,6 +66,10 @@ function game() {
     shooterImage = shooter.draw();
 	shooter.clicked(stage);
 	
+    gameStartButton = Object.create(startGameScreen).init((CANVAS_WIDTH / 2) - (START_GAME_IMAGE_WIDTH / 2),
+         (CANVAS_HEIGHT / 2) - (START_GAME_IMAGE_HEIGHT / 2), START_GAME_IMAGE_WIDTH, START_GAME_IMAGE_HEIGHT);
+    gameStartButtonImage = gameStartButton.draw();
+
     stage.addEventListener('mousemove', function(ev) {
         shooterImage.setX(ev.clientX - CANVAS_WIDTH / 3); //magic number 300?
     });
@@ -78,13 +83,11 @@ function game() {
 
     backgroundLayer.add(gameBackgroundImage);
     layer.add(shooterImage);
-    startScreenLayer = new Kinetic.Layer();
-
-    gameStartButton = Object.create(startGameScreen).init((CANVAS_WIDTH / 2) - (START_GAME_IMAGE_WIDTH / 2), (CANVAS_HEIGHT / 2) - (START_GAME_IMAGE_HEIGHT / 2), START_GAME_IMAGE_WIDTH, START_GAME_IMAGE_HEIGHT);
-    gameStartButtonImage = gameStartButton.draw();
     startScreenLayer.add(gameStartButtonImage);
+
     stage.add(backgroundLayer);
     stage.add(startScreenLayer);
+    
     gameStartButtonImage.addEventListener('click', function() {
         // fadeOut(gameStartButtonImage);
         gameStartButtonImage.remove();

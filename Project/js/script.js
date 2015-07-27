@@ -21,6 +21,7 @@ function game() {
     NUMBER_OF_DUCKS = 2;
     BIRDS_SIZE = 75;
     BIRDS_SPEED = 3;
+    BIRDS_SPEED_FALL = 6;
     CANVAS_WIDTH = 840;
     CANVAS_HEIGHT = 620;
     START_GAME_IMAGE_WIDTH = 176;
@@ -117,7 +118,7 @@ function game() {
 
             if (!ducky.isAlive) {
                 ducky.velocityX = 0;
-                ducky.velocityY = Math.abs(ducky.velocityY);
+                ducky.velocityY = BIRDS_SPEED_FALL;
 
                 currentY = duckyImage.getY() + ducky.velocityY;
 

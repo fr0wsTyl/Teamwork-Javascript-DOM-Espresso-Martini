@@ -39,7 +39,7 @@ var duck = function() {
 			getBirdState(newState, this);
 
 			this.image.image = this.duckImage;
-		}
+		},
 	};
 
 	function getBirdState(state, bird) {

@@ -29,6 +29,13 @@ var shotgun = (function() {
             stage.addEventListener('mouseup', function() {
                 shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';
             });
+
+            stage.addEventListener('touchstart', function() {
+                shotgunImage.src = 'images/Shotgun/shotgun-shooting.png';
+            });
+            stage.addEventListener('touchend', function() {
+                shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';
+            });
         }
     };
 

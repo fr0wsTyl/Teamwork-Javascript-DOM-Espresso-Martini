@@ -65,17 +65,16 @@ function game() {
     //xPosition, yPosition, width, height
     shooter = Object.create(shotgun).init(380, 525, 82, 97);
     shooterImage = shooter.draw();
-	shooter.clicked(stage);
-	
-    gameStartButton = Object.create(startGameScreen).init((CANVAS_WIDTH / 2) - (START_GAME_IMAGE_WIDTH / 2),
-         (CANVAS_HEIGHT / 2) - (START_GAME_IMAGE_HEIGHT / 2), START_GAME_IMAGE_WIDTH, START_GAME_IMAGE_HEIGHT);
+    shooter.clicked(stage);
+
+    gameStartButton = Object.create(startGameScreen).init((CANVAS_WIDTH / 2) - (START_GAME_IMAGE_WIDTH / 2), (CANVAS_HEIGHT / 2) - (START_GAME_IMAGE_HEIGHT / 2), START_GAME_IMAGE_WIDTH, START_GAME_IMAGE_HEIGHT);
     gameStartButtonImage = gameStartButton.draw();
 
     stage.addEventListener('mousemove', function(ev) {
         shooterImage.setX(ev.clientX - CANVAS_WIDTH / 3); //magic number 300?
     });
-	
-	// xPosition yPosition, velocityX, velocityY, width, height, state, isAlive
+
+    // xPosition yPosition, velocityX, velocityY, width, height, state, isAlive
     for (i = 0; i < NUMBER_OF_DUCKS; i += 1) {
         currentDuck = generateRandomDuck();
 
@@ -88,14 +87,9 @@ function game() {
 
     stage.add(backgroundLayer);
     stage.add(startScreenLayer);
-    
-    gameStartButtonImage.addEventListener('click', function() {
-        // fadeOut(gameStartButtonImage);
-        gameStartButtonImage.remove();
-        startScreenLayer.draw();
-        layer.add(shooterImage);
-        stage.add(layer);
-    });
+
+    startButtonIsPressed('click', gameStartButtonImage, startScreenLayer, layer, stage);
+    startButtonIsPressed('touchstart', gameStartButtonImage, startScreenLayer, layer, stage);
 
     function animFrame() {
         ducks.forEach(function(ducky, index, ducksArray) {
@@ -112,9 +106,8 @@ function game() {
                 bottomBorder = stage.getHeight() - (stage.getHeight() / 3),
                 magicNumber = 237;
 
-            ducky.image.addEventListener('click', function() {
-                ducky.isAlive = false;
-            });
+            duckIsHit(ducky, 'click');
+            duckIsHit(ducky, 'touchstart');
 
             if (!ducky.isAlive) {
                 ducky.velocityX = 0;
@@ -178,5 +171,21 @@ function game() {
         layer.add(currentDuckImage);
 
         return currentDuck;
+    }
+
+    function duckIsHit(currentDuck, eventListenerType) {
+        currentDuck.image.addEventListener(eventListenerType, function() {
+            currentDuck.isAlive = false;
+        });
+    }
+
+    function startButtonIsPressed(eventListenerType, gameStartButtonImage, startScreenLayer, layer, stage) {
+        gameStartButtonImage.addEventListener(eventListenerType, function() {
+            // fadeOut(gameStartButtonImage);
+            gameStartButtonImage.remove();
+            startScreenLayer.draw();
+            layer.add(shooterImage);
+            stage.add(layer);
+        });
     }
 }

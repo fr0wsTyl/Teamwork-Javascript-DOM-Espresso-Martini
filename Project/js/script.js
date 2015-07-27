@@ -66,7 +66,7 @@ function game() {
 	shooter.clicked(stage);
 	
     stage.addEventListener('mousemove', function(ev) {
-        shooterImage.setX(ev.clientX - CANVAS_WIDTH / 2); //magic number 300?
+        shooterImage.setX(ev.clientX - CANVAS_WIDTH / 3); //magic number 300?
     });
 	
 	// xPosition yPosition, velocityX, velocityY, width, height, state, isAlive

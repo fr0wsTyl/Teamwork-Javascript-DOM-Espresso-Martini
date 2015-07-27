@@ -13,7 +13,9 @@ function game() {
         CANVAS_HEIGHT,
         NUMBER_OF_DUCKS,
         BIRDS_SIZE,
-        BIRDS_SPEED;
+        BIRDS_SPEED,
+        START_GAME_IMAGE_WIDTH,
+        START_GAME_IMAGE_HEIGHT;
 
     //Assigning default values for the constants
     NUMBER_OF_DUCKS = 2;
@@ -21,12 +23,28 @@ function game() {
     BIRDS_SPEED = 3;
     CANVAS_WIDTH = 840;
     CANVAS_HEIGHT = 620;
-
+    START_GAME_IMAGE_WIDTH = 176;
+    START_GAME_IMAGE_HEIGHT = 82;
     //Assigning default values for other variables
     ducks = [];
     generatedRandom = 0;
     spawnXPosition = 0;
     spawnYPosition = 0;
+
+    // var fadeOut = function(shape) {
+    //     var o = shape.getOpacity();
+    //     o -= 0.1;
+    //     shape.setOpacity(o);
+    //     shape.getLayer().draw();
+    //     if (o !== 0) {
+    //         setTimeout(function() {
+    //             fadeOut(shape);
+    //         }, 30);
+    //     }
+    //     else {
+    //     	shape.remove();
+    //     }
+    // };
 
     //Initializing KineticJS Stage
     stage = new Kinetic.Stage({
@@ -45,9 +63,9 @@ function game() {
     //xPosition, yPosition, width, height
     shooter = Object.create(shotgun).init(380, 525, 82, 97);
     shooterImage = shooter.draw();
-	
-    stage.addEventListener('mousemove', function (ev) {
-        shooterImage.setX(ev.clientX - CANVAS_WIDTH/2); //magic number 300?
+
+    stage.addEventListener('mousemove', function(ev) {
+        shooterImage.setX(ev.clientX - CANVAS_WIDTH / 2); //magic number 300?
     });
 
     // xPosition yPosition, velocityX, velocityY, width, height, state, isAlive
@@ -59,9 +77,20 @@ function game() {
 
     backgroundLayer.add(gameBackgroundImage);
     layer.add(shooterImage);
+    startScreenLayer = new Kinetic.Layer();
 
+    gameStartButton = Object.create(startGameScreen).init((CANVAS_WIDTH / 2) - (START_GAME_IMAGE_WIDTH / 2), (CANVAS_HEIGHT / 2) - (START_GAME_IMAGE_HEIGHT / 2), START_GAME_IMAGE_WIDTH, START_GAME_IMAGE_HEIGHT);
+    gameStartButtonImage = gameStartButton.draw();
+    startScreenLayer.add(gameStartButtonImage);
     stage.add(backgroundLayer);
-    stage.add(layer);
+    stage.add(startScreenLayer);
+    gameStartButtonImage.addEventListener('click', function() {
+        // fadeOut(gameStartButtonImage);
+        gameStartButtonImage.remove();
+        startScreenLayer.draw();
+        layer.add(shooterImage);
+        stage.add(layer);
+    });
 
     function animFrame() {
         ducks.forEach(function(ducky, index, ducksArray) {

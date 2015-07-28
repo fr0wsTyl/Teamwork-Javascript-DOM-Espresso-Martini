@@ -10,6 +10,10 @@
     "tests"
   ],
   "dependencies": {
-    "kineticjs": "~5.1.0"
-  }
+    "howler": "~1.1.26"
+  },
+  "homepage": "https://github.com/fr0wsTyl/Teamwork-Javascript-DOM-Espresso-Martini",
+  "authors": [
+    "Espresso-Martini"
+  ]
 }

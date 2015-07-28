@@ -1,7 +1,8 @@
 var duck = function() {
 	
-	var sound = new Audio();
-	sound.src = 'sounds/duck.mp3';
+	var sound = new Howl({
+		urls: ['sounds/duck.mp3']
+	}).play();
 
 	var duck = {
 		init: function(x, y, velocityX, velocityY, width, height, state, isAlive) {

@@ -1,6 +1,8 @@
 var shotgun = (function() {
     var shotgunImage = new Image(),
-        shotgun;
+        shotgun,
+        sound = new Audio();
+        sound.src = 'sounds/shotgun.mp3';
 
     shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';
 
@@ -25,6 +27,7 @@ var shotgun = (function() {
         clicked: function(stage) {
             stage.addEventListener('mousedown', function() {
                 shotgunImage.src = 'images/Shotgun/shotgun-shooting.png';
+                sound.play();
             });
             stage.addEventListener('mouseup', function() {
                 shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';

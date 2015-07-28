@@ -1,4 +1,8 @@
 var duck = function() {
+	
+	var sound = new Audio();
+	sound.src = 'sounds/duck.mp3';
+
 	var duck = {
 		init: function(x, y, velocityX, velocityY, width, height, state, isAlive) {
 			this.x = x;
@@ -9,6 +13,7 @@ var duck = function() {
 			this.velocityY = velocityY;
 			this.isAlive = isAlive;
 			this.duckImage = new Image();
+			sound.play();
 
 			getBirdState(state, this);
 

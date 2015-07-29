@@ -1,7 +1,9 @@
 var startGameScreen = (function () {
-	var startScreenImage = new Image();
-	startScreenImage.src = 'images/playbutton.png';
-	var startGameScreen = {
+	var startScreenImage = new Image(),
+			startGameScreen;
+
+		startScreenImage.src = 'images/playbutton.png';
+		startGameScreen = {
 		init: function(x, y, width, height) {
             this.x = x;
             this.y = y;
@@ -10,8 +12,8 @@ var startGameScreen = (function () {
                 x: this.x,
                 y: this.y,
                 image: startScreenImage,
-                width: width,
-                height: height
+                width: this.width,
+                height: this.height
             });
 
             return this;

@@ -9,6 +9,7 @@ function game() {
         shooterImage,
         ducks,
         i,
+		canvas,
         CANVAS_WIDTH,
         CANVAS_HEIGHT,
         NUMBER_OF_DUCKS,
@@ -90,7 +91,10 @@ function game() {
 
     startButtonIsPressed('click', gameStartButtonImage, startScreenLayer, layer, stage);
     startButtonIsPressed('touchstart', gameStartButtonImage, startScreenLayer, layer, stage);
-
+	
+	canvas = document.getElementById('canvas-container');
+	canvas.style.cursor = "url('images/sights/sight-only.png') 47 47, auto";
+	
     function animFrame() {
         ducks.forEach(function(ducky, index, ducksArray) {
             var velocityX = ducky.velocityX,

@@ -1,13 +1,12 @@
 var shotgun = (function() {
     var shotgunImage = new Image(),
-        shotgun;
-        
-        var sound = new Howl({
+        shotgun,
+        sound = new Howl({
           urls: ['sounds/shotgun.mp3']
         }).play();
 
     shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';
-
+    
     shotgun = {
         init: function(x, y, width, height) {
             this.x = x;
@@ -17,8 +16,8 @@ var shotgun = (function() {
                 x: this.x,
                 y: this.y,
                 image: shotgunImage,
-                width: width,
-                height: height
+                width: this.width,
+                height: this.height
             });
 
             return this;

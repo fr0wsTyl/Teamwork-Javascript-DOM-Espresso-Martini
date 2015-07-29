@@ -7,31 +7,27 @@ function game() {
         gameBackgroundImage,
         shooter,
         shooterImage,
-        ducks,
         i,
-		canvas,
-        CANVAS_WIDTH,
-        CANVAS_HEIGHT,
-        NUMBER_OF_DUCKS,
-        BIRDS_SIZE,
-        BIRDS_SPEED,
-        START_GAME_IMAGE_WIDTH,
-        START_GAME_IMAGE_HEIGHT;
+		    canvas,
+        //Assigning default values for CONSTANTS
 
-    //Assigning default values for the constants
-    NUMBER_OF_DUCKS = 2;
-    BIRDS_SIZE = 75;
-    BIRDS_SPEED = 3;
-    BIRDS_SPEED_FALL = 6;
-    CANVAS_WIDTH = 840;
-    CANVAS_HEIGHT = 620;
-    START_GAME_IMAGE_WIDTH = 176;
-    START_GAME_IMAGE_HEIGHT = 82;
-    //Assigning default values for other variables
-    ducks = [];
-    generatedRandom = 0;
-    spawnXPosition = 0;
-    spawnYPosition = 0;
+        SHOTGUN_X_POSITION=380,
+        SHOTGUT_Y_POSITION=525,
+        SHOTGUN_WIDTH=82,
+        SHOTGUN_HEIGHT=97,
+        NUMBER_OF_DUCKS = 2,
+        BIRDS_SIZE = 75,
+        BIRDS_SPEED = 3,
+        BIRDS_SPEED_FALL = 6,
+        CANVAS_WIDTH = 840,
+        CANVAS_HEIGHT = 620,
+        START_GAME_IMAGE_WIDTH = 176,
+        START_GAME_IMAGE_HEIGHT = 82,
+        //Assigning default values for other variables
+        ducks = [],
+        generatedRandom = 0,
+        spawnXPosition = 0,
+        spawnYPosition = 0;
 
     // var fadeOut = function(shape) {
     //     var o = shape.getOpacity();
@@ -64,7 +60,7 @@ function game() {
     gameBackgroundImage = gameBackground.draw();
 
     //xPosition, yPosition, width, height
-    shooter = Object.create(shotgun).init(380, 525, 82, 97);
+    shooter = Object.create(shotgun).init(SHOTGUN_X_POSITION, SHOTGUT_Y_POSITION, SHOTGUN_WIDTH, SHOTGUN_HEIGHT);
     shooterImage = shooter.draw();
     shooter.clicked(stage);
 
@@ -91,10 +87,10 @@ function game() {
 
     startButtonIsPressed('click', gameStartButtonImage, startScreenLayer, layer, stage);
     startButtonIsPressed('touchstart', gameStartButtonImage, startScreenLayer, layer, stage);
-	
+
 	canvas = document.getElementById('canvas-container');
 	canvas.style.cursor = "url('images/sights/sight-only.png') 47 47, auto";
-	
+
     function animFrame() {
         ducks.forEach(function(ducky, index, ducksArray) {
             var velocityX = ducky.velocityX,

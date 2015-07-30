@@ -9,6 +9,9 @@ function game() {
         shooterImage,
         i,
 		    canvas,
+        hit = new Howl({
+            urls: ['sounds/hit.mp3']
+        }),
         //Assigning default values for CONSTANTS
 
         SHOTGUN_X_POSITION=380,
@@ -176,6 +179,7 @@ function game() {
     function duckIsHit(currentDuck, eventListenerType) {
         currentDuck.image.addEventListener(eventListenerType, function() {
             currentDuck.isAlive = false;
+            hit.play();
         });
     }
 

@@ -1,5 +1,16 @@
+html body {
+	margin: 0px;
+	padding: 0px;
+}
 #canvas-container {
 	width: 840px;
 	height: 620px;
 	margin: 0 auto;
+	margin-top: 0px;
+}
+#div-svg {
+	width: 840px;
+	height: 40px;
+	margin: 0 auto;
+	margin-bottom: 0px;
 }

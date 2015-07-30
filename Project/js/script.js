@@ -8,29 +8,39 @@ function game() {
         shooter,
         shooterImage,
         i,
-		    canvas,
-        hit = new Howl({
-            urls: ['sounds/hit.mp3']
-        }),
-        //Assigning default values for CONSTANTS
+        canvas,
+        hit,
+        gameScore,
+        scoreAsHtmlElement,
+        divScore,
+        svg,
 
-        SHOTGUN_X_POSITION=380,
-        SHOTGUT_Y_POSITION=525,
-        SHOTGUN_WIDTH=82,
-        SHOTGUN_HEIGHT=97,
+        //Assigning default values for CONSTANTS
+        SHOTGUN_X_POSITION = 380,
+        SHOTGUT_Y_POSITION = 525,
+        SHOTGUN_WIDTH = 82,
+        SHOTGUN_HEIGHT = 97,
         NUMBER_OF_DUCKS = 2,
         BIRDS_SIZE = 75,
         BIRDS_SPEED = 3,
         BIRDS_SPEED_FALL = 6,
         CANVAS_WIDTH = 840,
         CANVAS_HEIGHT = 620,
+        SCORE_COLOR = 'black',
+        SCORE_FONTSIZE = '40px',
         START_GAME_IMAGE_WIDTH = 176,
         START_GAME_IMAGE_HEIGHT = 82,
+
         //Assigning default values for other variables
         ducks = [],
         generatedRandom = 0,
         spawnXPosition = 0,
-        spawnYPosition = 0;
+        spawnYPosition = 0,
+        svgWidth = 0,
+        svgHeight = 0,
+        scorePositionX = 0,
+        scorePositionY = 0,
+        currentScore = 0;
 
     // var fadeOut = function(shape) {
     //     var o = shape.getOpacity();
@@ -46,6 +56,23 @@ function game() {
     //     	shape.remove();
     //     }
     // };
+
+    hit = new Howl({
+        urls: ['sounds/hit.mp3']
+    });
+
+    svg = document.getElementById('the-svg');
+    svgWidth = svg.getAttribute('width');
+    svgHeight = svg.getAttribute('height');
+
+    scorePositionX = svgWidth / 2 - 100;
+    scorePositionY = svgHeight - 10;
+
+    // score accepts text, color, font-size, x, y
+    gameScore = Object.create(score).init('Score: ' + currentScore, SCORE_COLOR, SCORE_FONTSIZE, scorePositionX, scorePositionY);
+    scoreAsHtmlElement = gameScore.getScore();
+
+    svg.appendChild(scoreAsHtmlElement);
 
     //Initializing KineticJS Stage
     stage = new Kinetic.Stage({
@@ -91,8 +118,8 @@ function game() {
     startButtonIsPressed('click', gameStartButtonImage, startScreenLayer, layer, stage);
     startButtonIsPressed('touchstart', gameStartButtonImage, startScreenLayer, layer, stage);
 
-	canvas = document.getElementById('canvas-container');
-	canvas.style.cursor = "url('images/sights/sight-only.png') 47 47, auto";
+    canvas = document.getElementById('canvas-container');
+    canvas.style.cursor = "url('images/sights/sight-only.png') 47 47, auto";
 
     function animFrame() {
         ducks.forEach(function(ducky, index, ducksArray) {
@@ -120,6 +147,10 @@ function game() {
 
                 if (currentY >= stage.getHeight() - BIRDS_SIZE) {
                     duckyImage.destroy();
+
+                    currentScore += 1;
+                    scoreAsHtmlElement.innerHTML = 'Score: ' + currentScore;
+
                     ducksArray[index] = generateRandomDuck();
                 }
             } else {

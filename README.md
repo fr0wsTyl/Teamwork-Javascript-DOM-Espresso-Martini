@@ -1,71 +1,28 @@
-#JavaScript DOM & UI: Teamwork Assignment
-*****************************************
+#Espresso-Martini [Teamwork documentation]
 
-This document describes the teamwork assignment for Telerik Academy students in JavaScript
-UI & DOM course
+This is a documentation of a game project made by TelerikAcademy team Espresso-Martini
 
-#Project Description
+<h1 align="center">“Espresso-Martini”</h1>
 
-Implement a client-side JavaScript application using the HTML graphic APIs – canvas and SVG.
+<h2 align="center">The story of our game</h2>
+Once upon a time, there was a man who hasn't had anything for dinner, so he decided to go to a hunt for some birds and with a good fortune, to survive in his difficult world.. On that day the idea of creating a game that follows his story was born. Our team decided to solve this complex task! 
+The project is called 'Bird Hunt' and it is a game just like the popular one 'Duck hunt'.
+The main difference between our unique game and the popular one is that we use Birds instead of ducks.
+As it is in the game 'Duck Hunt', the main purpose is to shoot birds and if you have enough luck, you'll have your delicious dinner from birds!
+Our implementation of the game includes a shotgun, a beautiful scenery (background) and very many birds that you have to take down!
 
-The project can be a game, web statistics or anything else. Sample applications:
-*   Chess
-*   Backgammon
-*   Any jumping game – Super Mario, Bomberman or else
-*   Statistics application – app showing different charts, based on received data
-*   Minesweeper
-*   Solitaire
-*   Bridge-Belote
-*   Paint-like application – drawing shapes, lines, etc
 
-##General Requirements
-Please define and implement the following assets in your project:
-*   Use the HTML5 canvas
-    *   Or a Canvas framework like KineticJS, paper.js or other
-*   Use SVG
-    *   Or a SVG framework like Raphael JS or other
-*   Create animations
-    *   Either for the canvas, SVG or both
-*   The application must work in the latest versions of the browsers: Google Chrome, Mozilla Firefox, Internet Explorer 10/11, Opera and Apple Safar
+##Documentation
+Our game is made using the latest WEB technologies such as HTML5, CSS, JavaScript.
+We are using a canvas in order to draw our objects. Also we use the old and slow technology called SVG to print our game score.
+The project root includes 4 folders which separate the game logic.
+We have the following folders:
+* CSS
+  *   Where we add our styles to the canvas
+* Images
+  *   Where we store all needed sprites and images for the game
+* JS
+  *   In this folder we sotre our scripts files and the main game logic
+* Sounds
+  *   Here we have the amazing sounds and rings for the game
 
-##Additional Requirements
-Follow the best practices for producing high-quality code: 
-*   **Correct naming**
-*   **Data encapsulation**
-    *   Use OOP and modules
-*   **Strong cohesion** and **loose coupling**
-*   Use **GIT** as a source control system
-*   Host it on <a href="http://github.com" title="http://github.com" target="_blank">http://github.com</a>
-
-##Optional Requirements    
-If you have a chance, time and a suitable situation, you might add some of the following to your project:
-*   Use DOM manipulations like native DOM API and/or jQuery
-*   Unit and integration testing
-*   Backward compatibility (make the application usable on browsers like IE8, IE7 and IE6)
-
-##Non-required Work
-*   Completely finished project is not obligatory required. It will not be a big problem if your project is not completely finished or is not working greatly
-    *   This team work project is for educational purpose
-    *   Its main purpose it to experience using graphics, DOM manipulation and OOP in a real-world-like project and to get some experience in team working and team collaboration with a source control system.
-*   Implementation of server-side logic with ASP.NET, PHP, Java or Node.js
-
-##Deliverables
-Put the following in a ZIP archive and submit it (each team member submits the same file):
-*   The **complete source code**
-*   **Brief documentation** of your project (2-3 pages). It should provide the following information (in brief):
-    *   **Team name** and **list of team members**
-    *   Project purpose – **what problem do you solve?**
-    *   The **URL of your Git repository**
-    *   Any other information (optionally)
-*   Optionally provide a presentation designed for the project defense
-
-##Public Project Defense
-Each team will have to deliver a public defense of its work to the other students and trainers. You will have only 10 minutes for the following:
-*   Demonstrate the application (very shortly)
-*   Show the source code
-*   Show the commits logs to confirm that team member have contributed.
-*   Optionally you might prepare a presentation (3-4 slides)
-Please be **strict in timing!** Be well prepared for presenting maximum of your work for minimum time. Bring your own laptop. Test it preliminary with the multimedia projector. Open the project assets beforehand to save time. You have 10 minutes, no more
-
-##Give Feedback about Your Teammates
-You will be invited to provide feedback about all your teammates, their attitude to this project, their technical skills, their team working skills, their contribution to the project, etc. The feedback is important part of the project evaluation so take it seriously and be honest

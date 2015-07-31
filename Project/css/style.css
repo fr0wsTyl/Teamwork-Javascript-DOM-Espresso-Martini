@@ -13,4 +13,9 @@ html body {
 	height: 40px;
 	margin: 0 auto;
 	margin-bottom: 0px;
+	display: inline-block;
+}
+#timer {
+	display: inline-block;
+	font-size: 25px;
 }

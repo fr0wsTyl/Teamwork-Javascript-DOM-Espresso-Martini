@@ -30,6 +30,7 @@ function game() {
         SCORE_FONTSIZE = '40px',
         START_GAME_IMAGE_WIDTH = 176,
         START_GAME_IMAGE_HEIGHT = 82,
+        MINUTES = 1,
 
         //Assigning default values for other variables
         ducks = [],
@@ -91,8 +92,8 @@ function game() {
     stage.add(backgroundLayer);
     stage.add(startScreenLayer);
 
-    startButtonIsPressed('click', gameStartButtonImage, startScreenLayer, layer, stage);
-    startButtonIsPressed('touchstart', gameStartButtonImage, startScreenLayer, layer, stage);
+    startButtonIsPressed('click', gameStartButtonImage, startScreenLayer, layer, stage, MINUTES);
+    startButtonIsPressed('touchstart', gameStartButtonImage, startScreenLayer, layer, stage, MINUTES);
 
     canvas = document.getElementById('canvas-container');
     canvas.style.cursor = "url('images/sights/sight-only.png') 47 47, auto";
@@ -190,12 +191,44 @@ function game() {
         });
     }
 
-    function startButtonIsPressed(eventListenerType, gameStartButtonImage, startScreenLayer, layer, stage) {
+    function startButtonIsPressed(eventListenerType, gameStartButtonImage, startScreenLayer, layer, stage, minutes) {
         gameStartButtonImage.addEventListener(eventListenerType, function() {
             gameStartButtonImage.remove();
             startScreenLayer.draw();
             layer.add(shooterImage);
             stage.add(layer);
+
+            initiateTimer(minutes);
         });
+    }
+
+        function initiateTimer(minutes) {
+        var countDownMinutes = 60 * minutes,
+            display = document.getElementById('timer');
+
+        startTimer(countDownMinutes, display);
+    }
+
+    function startTimer(duration, display) {
+        var timer = duration,
+            minutes, seconds;
+
+        var refreshIntervalId = setInterval(function() {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.innerHTML = 'Remaining time: ' + (minutes + ":" + seconds);
+
+            if (--timer < 0) {
+                clearInterval(refreshIntervalId);
+                stage.destroy();
+            }
+
+        }, 1000);
+
+        refreshIntervalId();
     }
 }

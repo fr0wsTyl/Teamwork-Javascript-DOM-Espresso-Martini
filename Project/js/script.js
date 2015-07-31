@@ -199,6 +199,7 @@ function game() {
             BIRDS_SPEED, BIRDS_SIZE, BIRDS_SIZE, 'down-right', isAlive);
         currentDuckImage = currentDuck.draw();
         layer.add(currentDuckImage);
+		layer.add(shooterImage);
 
         return currentDuck;
     }

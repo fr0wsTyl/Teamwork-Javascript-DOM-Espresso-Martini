@@ -35,6 +35,13 @@ We have the following folders:
   *   Where we store all needed sprites and images for the game
 * JS
   *   In this folder we store our scripts files and the main game logic
+	
+	- background.js for drawing the background image using 'new Kinetic.Image()'
+	- duck.js describes the pattern from which every duck (bird) is generated
+	- score.js is used to print the score using SVG
+	- shotgun.js for drawing the shotgun
+	- start-game-screen.js for the starting screen
+	
 * Sounds
   *   Here we have the amazing sounds and rings for the game
 

@@ -2,7 +2,8 @@ var shotgun = (function() {
     var shotgunImage = new Image(),
         shotgun,
         sound = new Howl({
-          urls: ['sounds/shotgun.mp3']
+          urls: ['sounds/shotgun.mp3'],
+          buffer: true
         });
 
     shotgunImage.src = 'images/Shotgun/shotgun-not-shooting.png';

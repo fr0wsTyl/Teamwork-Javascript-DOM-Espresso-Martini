@@ -57,10 +57,6 @@ function game() {
     //     }
     // };
 
-    hit = new Howl({
-        urls: ['sounds/hit.mp3']
-    });
-
     svg = document.getElementById('the-svg');
     svgWidth = svg.getAttribute('width');
     svgHeight = svg.getAttribute('height');
@@ -210,7 +206,6 @@ function game() {
     function duckIsHit(currentDuck, eventListenerType) {
         currentDuck.image.addEventListener(eventListenerType, function() {
             currentDuck.isAlive = false;
-            hit.play();
         });
     }
 

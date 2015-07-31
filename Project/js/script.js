@@ -20,7 +20,7 @@ function game() {
         SHOTGUT_Y_POSITION = 525,
         SHOTGUN_WIDTH = 82,
         SHOTGUN_HEIGHT = 97,
-        NUMBER_OF_DUCKS = 2,
+        NUMBER_OF_DUCKS = 5,
         BIRDS_SIZE = 75,
         BIRDS_SPEED = 3,
         BIRDS_SPEED_FALL = 6,
